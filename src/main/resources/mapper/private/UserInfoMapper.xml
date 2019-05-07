@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zy.fenbu.subtreasurydemo.privatedata.userinfo.mapper.UserInfoMapper" >
+
+
+  <insert id="insert" parameterType="com.zy.fenbu.subtreasurydemo.privatedata.userinfo.entity.UserInfoEntity">
+    insert tb_user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+          user_id,
+      </if>
+      <if test="info != null">
+        info,
+      </if>
+      <if test="id != null">
+        id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffixOverrides="," suffix=")">
+      <if test="userId != null">
+        #{userId},
+      </if>
+      <if test="info != null">
+        #{info},
+      </if>
+      <if test="id != null">
+        #{id},
+      </if>
+    </trim>
+  </insert>
+</mapper>
