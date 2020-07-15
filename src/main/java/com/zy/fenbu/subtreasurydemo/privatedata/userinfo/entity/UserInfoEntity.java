@@ -1,13 +1,10 @@
 package com.zy.fenbu.subtreasurydemo.privatedata.userinfo.entity;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
-/**
- * test
- */
+@Data
 public class UserInfoEntity {
 
     private String id;

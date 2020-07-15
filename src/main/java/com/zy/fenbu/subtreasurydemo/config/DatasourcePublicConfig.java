@@ -4,8 +4,11 @@ import com.atomikos.icatch.jta.UserTransactionImp;
 import com.atomikos.icatch.jta.UserTransactionManager;
 import com.atomikos.jdbc.AtomikosDataSourceBean;
 import com.mysql.jdbc.jdbc2.optional.MysqlXADataSource;
-import com.zy.fenbu.subtreasurydemo.config.bean.PrivateBeanConfig;
 import com.zy.fenbu.subtreasurydemo.config.bean.PublicBeanConfig;
+import java.sql.SQLException;
+import javax.annotation.Resource;
+import javax.sql.DataSource;
+import javax.transaction.UserTransaction;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -13,17 +16,12 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.jta.JtaTransactionManager;
-
-import javax.sql.DataSource;
-import javax.transaction.UserTransaction;
 
 @Configuration
 @MapperScan(basePackages = {"com.zy.fenbu.subtreasurydemo.publicdata"}, sqlSessionTemplateRef = "publicSessionTemplate")
@@ -37,14 +35,14 @@ public class DatasourcePublicConfig {
 //        return DataSourceBuilder.create().build();
 //    }
 
-    @Autowired
+    @Resource
     private PublicBeanConfig publicBeanConfig;
 
 
     @Bean(name="publicDataSource")
     @Qualifier
     @ConfigurationProperties("public.spring.datasource")
-    public DataSource publicDataSource (){
+    public DataSource publicDataSource () throws SQLException {
 
         MysqlXADataSource mysqlXADataSource = new MysqlXADataSource();
         mysqlXADataSource.setURL(publicBeanConfig.getUrl());

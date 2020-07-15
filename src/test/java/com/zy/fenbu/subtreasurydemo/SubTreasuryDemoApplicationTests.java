@@ -18,9 +18,9 @@ public class SubTreasuryDemoApplicationTests {
 	private UserService userService;
 	@Test
 	public void contextLoads() {
-        List<UserEntity> userEntities = userService.queryAll(new UserEntity());
+//        List<UserEntity> userEntities = userService.queryAll(new UserEntity());
 
-        System.out.println(userEntities);
+//        System.out.println(userEntities);
     }
 
 }

@@ -3,28 +3,28 @@ server:
 spring:
   datasource:
     name:  myql
-    url: jdbc:mysql://212.64.44.220:3306/public?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    url: jdbc:mysql://127.0.0.1:3306/atomikos_1?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
     username: root
-    password: 123456
+    password: root
     driver-class-name: com.mysql.jdbc.Driver
 
 public:
   spring:
     datasource:
       name:  myql
-      url: jdbc:mysql://212.64.44.220:3306/public?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+      url: jdbc:mysql://127.0.0.1:3306/atomikos_1?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
       username: root
-      password: 123456
+      password: root
       driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: jdbc:mysql://212.64.44.220:3306/public?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/atomikos_1?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
 
 private:
   spring:
     datasource:
       name:  myql
-      url: jdbc:mysql://212.64.44.220:3306/public2?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+      url: jdbc:mysql://127.0.0.1:3306/atomikos_2?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
       username: root
-      password: 123456
+      password: root
       driver-class-name: com.mysql.cj.jdbc.Driver
 
 #mybatis:
