@@ -3,12 +3,12 @@ package com.zy.fenbu.subtreasurydemo.config;
 import com.atomikos.jdbc.AtomikosDataSourceBean;
 import com.mysql.jdbc.jdbc2.optional.MysqlXADataSource;
 import com.zy.fenbu.subtreasurydemo.config.bean.PrivateBeanConfig;
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,11 +25,11 @@ public class DatasourcePrivateConfig {
 //    public DataSource privateDataSource () {
 //        DataSource dataSource = DataSourceBuilder.create().build();
 //    }
-    @Autowired
+    @Resource
     private PrivateBeanConfig privateBeanConfig;
 
     /**
-     * DATASOURCEPUBLICcONFIG 和此类的原理是一样
+     * DATA_SOURCE_PUBLIC_CONFIG 和此类的原理是一样
      * 1 创建多数据源时，需要加@Primary 指定主要的数据源，否则会报错
      * 2 如果有多数据源，在分层的时候 java 下面的 mapper 要与数据源，以及.xml文件 在目录上能够区分，多个数据源所对应的目录不能
      * 重复，否则会报错
@@ -62,7 +62,7 @@ public class DatasourcePrivateConfig {
     }
 
     @Bean
-    public SqlSessionFactory priateSessionFactory(@Qualifier("privateDataSource") DataSource dataSource){
+    public SqlSessionFactory privateSessionFactory(@Qualifier("privateDataSource") DataSource dataSource){
     SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
         //添加XML目录
@@ -82,7 +82,7 @@ public class DatasourcePrivateConfig {
 //    }
 
     @Bean
-    public SqlSessionTemplate privateSessionTemplate(@Qualifier("priateSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
+    public SqlSessionTemplate privateSessionTemplate(@Qualifier("privateSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
         SqlSessionTemplate template = new SqlSessionTemplate(sqlSessionFactory); // 使用上面配置的Factory
         return template;
     }

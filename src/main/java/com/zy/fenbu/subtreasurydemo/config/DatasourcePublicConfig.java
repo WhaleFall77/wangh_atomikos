@@ -41,15 +41,13 @@ public class DatasourcePublicConfig {
 
     @Bean(name="publicDataSource")
     @Qualifier
-    @ConfigurationProperties("public.spring.datasource")
+//    @ConfigurationProperties("public.spring.datasource")
     public DataSource publicDataSource () throws SQLException {
-
         MysqlXADataSource mysqlXADataSource = new MysqlXADataSource();
         mysqlXADataSource.setURL(publicBeanConfig.getUrl());
         mysqlXADataSource.setUser(publicBeanConfig.getUsername());
         mysqlXADataSource.setPassword(publicBeanConfig.getPassword());
         mysqlXADataSource.setPinGlobalTxToPhysicalConnection(true);
-
         AtomikosDataSourceBean xaDataSource = new AtomikosDataSourceBean();
         xaDataSource.setXaDataSource(mysqlXADataSource);
         xaDataSource.setUniqueResourceName("publicDataSource");
