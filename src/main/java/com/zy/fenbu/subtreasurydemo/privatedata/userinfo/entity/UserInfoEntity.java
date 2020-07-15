@@ -5,6 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
+/**
+ * test
+ */
 public class UserInfoEntity {
 
     private String id;
