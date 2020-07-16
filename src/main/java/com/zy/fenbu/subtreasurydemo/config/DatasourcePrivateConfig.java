@@ -15,6 +15,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 
+
+/**
+ * private库配置装载
+ */
 @Configuration
 @MapperScan(basePackages = {"com.zy.fenbu.subtreasurydemo.privatedata"}, sqlSessionTemplateRef = "privateSessionTemplate")
 public class DatasourcePrivateConfig {

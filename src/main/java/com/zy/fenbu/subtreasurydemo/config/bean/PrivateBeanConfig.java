@@ -11,8 +11,7 @@ import org.springframework.stereotype.Component;
  *
  * @author wangh
  */
-@Setter
-@Getter
+
 @Data
 @Component
 @ConfigurationProperties(prefix = "private.spring.datasource")
